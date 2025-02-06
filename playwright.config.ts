@@ -4,7 +4,7 @@ import * as dotenv from 'dotenv'
 dotenv.config()
 
 const capabilities = {
-	browserName: "Chrome",
+	browserName: "pw-chromium",
 	browserVersion: "latest",
 	"LT:Options": {
 		user: process.env.LT_USERNAME,
@@ -16,6 +16,7 @@ const capabilities = {
     network: true,
 		w3c: true,
 		plugin: "node_js-node_js",
+    console: true,
 	}
 }
 /**
@@ -48,9 +49,12 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    video: 'on',
+    screenshot: 'only-on-failure',
     connectOptions:{
       wsEndpoint: `wss://cdp.lambdatest.com/playwright?capabilities=${encodeURIComponent(JSON.stringify(capabilities))}`
-    }
+    },
+    headless: true
   },
 
   /* Configure projects for major browsers */
