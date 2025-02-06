@@ -6,7 +6,7 @@ test.describe('LambdaTest Selenium Playground Tests', () => {
 
   });
 
-  test.only('Test Scenario 2: Drag & Drop Sliders', async ({ page }) => {
+  test('Test Scenario 2: Drag & Drop Sliders', async ({ page }) => {
     //step 1 - Open the https://www.lambdatest.com/selenium-playground page and click“Drag & Drop Sliders.”
     await page.goto('https://www.lambdatest.com/selenium-playground');
     await page.getByRole('link', { name: 'Drag & Drop Sliders' }).click();
