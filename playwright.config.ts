@@ -1,5 +1,23 @@
 import { defineConfig, devices } from '@playwright/test';
+import * as dotenv from 'dotenv'
 
+dotenv.config()
+
+const capabilities = {
+	browserName: "Chrome",
+	browserVersion: "latest",
+	"LT:Options": {
+		user: process.env.LT_USERNAME,
+		accessKey: process.env.LT_ACCESS_KEY,
+		platformName: "Windows 10",
+		project: "challenge",
+    build: "Playwright TS Build",
+    name: "Playwright Test",
+    network: true,
+		w3c: true,
+		plugin: "node_js-node_js",
+	}
+}
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -30,6 +48,9 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    connectOptions:{
+      wsEndpoint: `wss://cdp.lambdatest.com/playwright?capabilities=${encodeURIComponent(JSON.stringify(capabilities))}`
+    }
   },
 
   /* Configure projects for major browsers */
@@ -38,7 +59,7 @@ export default defineConfig({
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     },
-
+/* 
     {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
@@ -47,7 +68,7 @@ export default defineConfig({
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
-    },
+    }, */
 
     /* Test against mobile viewports. */
     // {
