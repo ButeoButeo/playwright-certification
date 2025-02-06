@@ -64,11 +64,13 @@ test.describe('LambdaTest Selenium Playground Tests', () => {
         const input = element as HTMLInputElement
         return input.validationMessage
       })
-/*        if(TestInfo.project.name =='chromium' || TestInfo.project.name =='firefox'){  */
+      if(TestInfo.project.name =='chrome' || TestInfo.project.name =='webkit'){ 
         expect(validationMessage).toContain("Please fill in this field.")
-/*        }else if(TestInfo.project.name =='webkit'||TestInfo.project.name =='pw-webkit'){
-        expect(validationMessage).toContain("Fill out this field") */
-     // } 
+       }else if(TestInfo.project.name =='webkit' || TestInfo.project.name =='pw-webkit'){
+        expect(validationMessage).toContain("Fill out this field")
+      } else if(TestInfo.project.name =='pw-webkit'){
+        expect(validationMessage).toContain("Fill out on this field")
+      } 
     //step 4 - Fill in Name, Email, and other fields.
      inputFieldName.fill('Tester')
      await page.getByRole('textbox', { name: 'Email*' }).fill('Tester@gmail.com');
