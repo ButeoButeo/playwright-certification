@@ -1,4 +1,7 @@
-import { test, expect } from '@playwright/test';
+//import { test, expect } from '@playwright/test';
+
+import  test from '../lambdatest-setup'
+import { expect } from '@playwright/test' 
 
 test.describe('LambdaTest Selenium Playground Tests', () => {
   
@@ -19,7 +22,7 @@ test.describe('LambdaTest Selenium Playground Tests', () => {
     await expect(await page.getByText('Welcome to LambdaTest')).toHaveText(stringValue)
   });
 
-  test('Test Scenario 2: Drag & Drop Sliders', async ({ page }) => {
+  test('Test Scenario 2: Drag y Drop Sliders', async ({ page }) => {
     //step 1 - Open the https://www.lambdatest.com/selenium-playground page and click“Drag & Drop Sliders.”
     await page.goto('/selenium-playground');
     await page.getByRole('link', { name: 'Drag & Drop Sliders' }).click();
@@ -45,6 +48,7 @@ test.describe('LambdaTest Selenium Playground Tests', () => {
                     isCompleted = true;
                 }
                 expect(text).toBe(targetAmount)
+                expect(await page.locator('#rangeSuccess').textContent()).toEqual(targetAmount)
             }
         }
     }
@@ -64,12 +68,12 @@ test.describe('LambdaTest Selenium Playground Tests', () => {
         const input = element as HTMLInputElement
         return input.validationMessage
       })
-      if(TestInfo.project.name =='chrome' || TestInfo.project.name =='webkit'){ 
+      if(TestInfo.project.name =='chrome' || TestInfo.project.name =='pw-chromium'){ 
         expect(validationMessage).toContain("Please fill in this field.")
-       }else if(TestInfo.project.name =='webkit' || TestInfo.project.name =='pw-webkit'){
+       }else if(TestInfo.project.name =='pw-webkit' || TestInfo.project.name =='webkit'){
         expect(validationMessage).toContain("Fill out this field")
-      } else if(TestInfo.project.name =='pw-webkit'){
-        expect(validationMessage).toContain("Fill out on this field")
+      }else if(TestInfo.project.name =='pw-firefox' || TestInfo.project.name =='firefox'){
+        expect(validationMessage).toContain("Please fill out this field.")
       } 
     //step 4 - Fill in Name, Email, and other fields.
      inputFieldName.fill('Tester')
