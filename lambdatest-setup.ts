@@ -12,7 +12,8 @@ const capabilities = {
   browserName: "pw-chromium", // Browsers allowed: `Chrome`, `MicrosoftEdge`, `pw-chromium`, `pw-firefox` and `pw-webkit`
   browserVersion: "latest",
   "LT:Options": {
-    platform: "macOS Monterey",
+    useSpecificBundleVersion: true,
+    platform: "macOS Sequoia",
     build: "Playwright TypeScript Build",
     name: "Playwright TypeScript Test",
     user: process.env.LT_USERNAME,

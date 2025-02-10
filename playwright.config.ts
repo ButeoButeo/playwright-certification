@@ -74,6 +74,14 @@ export default defineConfig({
     name: 'pw-chromium:latest:Windows 10@lambdatest',
     //use: { ...devices['Desktop Firefox'] },
     }, 
+    {
+    name: 'pw-webkit:latest:MacOS Sequoia@lambdatest',
+    //use: { ...devices['Desktop Firefox'] },
+    },
+    {
+    name: 'Chrome:latest:Windows 10@lambdatest',
+    //use: { ...devices['Desktop Firefox'] },
+    }, 
 
 
     /* Test against mobile viewports. */
